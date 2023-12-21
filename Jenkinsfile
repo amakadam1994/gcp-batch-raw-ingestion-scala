@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     if(params.Airflow_Dag_Upload != "NONE"){
-                    slackSend color: 'good', message: "Hi <@$userId> airflow dag "+ params.Airflow_Dag_Upload +" deployed"
+                    //slackSend color: 'good', message: "Hi <@$userId> airflow dag "+ params.Airflow_Dag_Upload +" deployed"
                     sh 'gsutil cp /bitnami/jenkins/home/workspace/gcp-batch-raw-ingestion-scala/airflow_dags/'+ params.Airflow_Dag_Upload +'.py  gs://us-central1-bronze-poc-grou-747c386f-bucket/dags'
                     }
                 }
@@ -99,10 +99,10 @@ pipeline {
 
     post {
            success {
-               slackSend color: 'good', message: "Hi <@$userId> Airflow dag is trigged please check the ui"
+               //slackSend color: 'good', message: "Hi <@$userId> Airflow dag is trigged please check the ui"
            }
            failure {
-              slackSend color: 'danger', message: "Hi <@$userId> your build has failed pleas check ${env.BUILD_URL}"
+              //slackSend color: 'danger', message: "Hi <@$userId> your build has failed pleas check ${env.BUILD_URL}"
            }
         }
 }
