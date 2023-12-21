@@ -44,6 +44,7 @@ with DAG(
         storage_bucket="dataproc_ravi_poc",
         region='us-central1',
         zone='',
+        image_version="2.1.35-debian11",
     )
 
     spark_submit = DataprocSubmitJobOperator(
