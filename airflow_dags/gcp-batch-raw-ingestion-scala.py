@@ -18,7 +18,7 @@ SPARK_JOB = {
         "spark.driver.extraJavaOptions":"-DdoneFolderName=poc_folder -DtemporaryGcsBucket=dataproc_ravi_poc -Dproject_id=playground-375318 -Dsrc_root=gs://bronze-poc-group/mongodb/landing -Denvironment=cluster -DsrcSchema=sample_analytics -DdistSchema=transactional_data -Dconfig.resource=/PROD/application.conf",
         },
         "args":[
-        {"tableList":"gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/table_list.txt"},
+        "--tableList=gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/table_list.txt",
         ],
 
     },
