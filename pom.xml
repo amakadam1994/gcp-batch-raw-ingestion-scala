@@ -96,13 +96,6 @@
             <!--<scope>provided</scope>-->
         </dependency>
 
-
-        <dependency>
-            <groupId>com.google.cloud.spark</groupId>
-            <artifactId>spark-bigquery_3.1</artifactId>
-            <version>0.27.1</version>
-        </dependency>
-
         <dependency>
             <groupId>org.jmockit</groupId>
             <artifactId>jmockit</artifactId>
