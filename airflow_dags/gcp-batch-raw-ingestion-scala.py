@@ -14,6 +14,12 @@ SPARK_JOB = {
     "spark_job": {
         "jar_file_uris": ["gs://bronze-poc-group/gcp-batch-raw-ingestion-scala/cv-gcp-etl-jar-with-dependencies.jar","gs://bronze-poc-group/gcp-batch-raw-ingestion-scala/jars/scopt_2.12-4.0.1.jar","gs://bronze-poc-group/gcp-batch-raw-ingestion-scala/jars/spark-3.1-bigquery-0.31.1.jar"],
         "main_class": "com.clairvoyant.app.CLAIRVOYANTApp",
+        "properties": {
+        "spark.driver.extraJavaOptions":"-DdoneFolderName=poc_folder -DtemporaryGcsBucket=dataproc_ravi_poc -Dproject_id=playground-375318 -Dsrc_root=gs://bronze-poc-group/mongodb/landing -Denvironment=cluster -DsrcSchema=sample_analytics -DdistSchema=transactional_data -Dconfig.resource=/PROD/application.conf",
+        }
+    },
+    "args":{
+    "tableList":"gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/table_list.txt"
     },
 }
 
