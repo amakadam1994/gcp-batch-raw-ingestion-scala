@@ -59,7 +59,7 @@ pipeline {
                 script {
                     if(params.Airflow_Dag_Upload != "NONE"){
                     slackSend color: 'good', message: "Hi <@$userId> airflow dag "+ params.Airflow_Dag_Upload +" deployed"
-                    sh 'gsutil cp /bitnami/jenkins/home/workspace/gcp-batch-raw-ingestion-scala/airflow_dags/'+ params.Airflow_Dag_Upload +'.py  gs://us-central1-data-generator--fc43a156-bucket/dags'
+                    sh 'gsutil cp /bitnami/jenkins/home/workspace/gcp-batch-raw-ingestion-scala/airflow_dags/'+ params.Airflow_Dag_Upload +'.py  gs://us-central1-bronze-poc-grou-747c386f-bucket/dags'
                     }
                 }
             }
@@ -72,8 +72,7 @@ pipeline {
                     if(params.Run_Airflow_Dag != "NONE"){
                         withEnv(['GCLOUD_PATH=/usr/lib/google-cloud-sdk/bin']) {
                          slackSend color: 'good', message: "Running gcloud spark command"
-                           //sh '$GCLOUD_PATH/gcloud dataproc jobs submit spark --cluster=cluster-e7b7 --region=us-central1 --class=org.example.hello --jars=gs://dataproc_ravi_poc/spark_jar/spark-scala-etl-1.0-SNAPSHOT-jar-with-dependencies.jar'
-                           sh '$GCLOUD_PATH/gcloud composer environments  run  data-generator-demo --location us-central1  dags trigger -- gcp-batch-raw-ingestion-scala'
+                           sh '$GCLOUD_PATH/gcloud composer environments  run  bronze-poc-group --location us-central1  dags trigger -- gcp-batch-raw-ingestion-scala'
                          }
                     }
                  }
