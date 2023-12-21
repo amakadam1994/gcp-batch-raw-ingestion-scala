@@ -1,4 +1,4 @@
-def userId = slackUserIdFromEmail("${BUILD_USER_EMAIL}")
+def userId = slackUserIdFromEmail("${env.BUILD_USER_EMAIL}")
 pipeline {
     agent any
       tools {
