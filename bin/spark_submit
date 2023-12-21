@@ -1,0 +1,21 @@
+gcloud dataproc jobs submit spark --cluster=cluster-03a0 --region=us-central1 --class=com.clairvoyant.app.CLAIRVOYANTApp  --properties spark.driver.extraJavaOptions="-DdoneFolderName=poc_folder -DtemporaryGcsBucket=dataproc_ravi_poc -Dproject_id=playground-375318 -Dsrc_root=gs://bronze-poc-group/mongodb/landing -Denvironment=cluster -DsrcSchema=sample_analytics -DdistSchema=transactional_data -Dconfig.resource=/PROD/application.conf" --jars=gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/cv-gcp-etl-jar-with-dependencies.jar,gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/scopt_2.12-4.0.1.jar,gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/jars/spark-3.1-bigquery-0.31.1.jar  -- --tableList gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/table_list.txt
+
+
+
+
+gcloud dataproc jobs submit spark \
+--cluster=cluster-03a0 \
+--region=us-central1 \
+--class=com.clairvoyant.app.CLAIRVOYANTApp  \
+--properties spark.driver.extraJavaOptions="-DdoneFolderName=poc_folder \
+-DtemporaryGcsBucket=dataproc_ravi_poc \
+-Dproject_id=playground-375318 \
+-Dsrc_root=gs://bronze-poc-group/mongodb/landing \
+-Denvironment=cluster \
+-DsrcSchema=sample_analytics \
+-DdistSchema=transactional_data \
+-Dconfig.resource=/PROD/application.conf" \
+--jars=gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/cv-gcp-etl-jar-with-dependencies.jar,\
+gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/scopt_2.12-4.0.1.jar,\
+gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/jars/spark-3.1-bigquery-0.31.1.jar \
+-- --tableList gs://bronze-poc-group/gcp-batch-raw-ingestion/dataproc/table_list.txt

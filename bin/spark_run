@@ -1,0 +1,24 @@
+spark-submit --class com.clairvoyant.app.CLAIRVOYANTApp \
+--master yarn --deploy-mode client \
+--driver-memory 32g --executor-memory 40g \
+--files table_list.txt \
+--conf spark.driver.extraJavaOptions="-XX:+UseG1GC -Dlog4j.configuration=log4j-deiver.properties -Dconfig.resource=PROD/application.conf \
+-Dsrc_root= hdfs://apps/hive/warehouse \
+-Ddestination_root= hdfs://apps/hive/warehouse/clairvoyant \
+-Dschemas.distSchema=transactional_data \
+-Dschemas.srcSchema=sample_analytics \
+-Denvironment=cluster \
+-DdoneFolderName=transactional_data_20231218 " \
+--conf spark.dynamicAllocation.enabled=true \
+--conf spark.shuffle.service.enabled=true \
+--conf spark.sql.shuffle.partitions=200 \
+--conf spark.default.parallelism=200 \
+--conf spark.executor.cores=5 \
+--conf spark.dynamicAllocation.minExecutors=40 \
+--conf spark.dynamicAllocation.maxExecutors=300 \
+--conf spark.shuffle.io.maxRetries=6 \
+--conf spark.driver.maxResultSize=3g \
+--conf spark.yarn.executor.memoryOverhead=2048 \
+--conf spark.sql.broadcastTimeout=3000 \
+--queue default  -tableList table_list.txt
+
